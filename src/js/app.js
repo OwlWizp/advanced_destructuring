@@ -1,10 +1,13 @@
 export default function getSpecialAttack(character) {
-  const special = [...character.special];
-  special.forEach((attack, ind) => {
-    special[ind] = { ...attack };
-    if (!('description' in attack)) {
-      special[ind].description = 'Описание недоступно';
-    }
+  const { special } = character;
+  const result = [];
+  special.forEach((attack) => {
+    const {
+      id, name, icon, description = 'Описание недоступно',
+    } = attack;
+    result.push({
+      id, name, icon, description,
+    });
   });
-  return special;
+  return result;
 }
